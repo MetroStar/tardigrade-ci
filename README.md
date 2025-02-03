@@ -50,7 +50,7 @@ Regardless of the method for using `tardigrade-ci`, the `tardigrade-ci` framewor
 ```bash
 SHELL := /bin/bash
 
-include $(shell test -f .tardigrade-ci || curl -sSL -o .tardigrade-ci "https://raw.githubusercontent.com/plus3it/tardigrade-ci/master/bootstrap/Makefile.bootstrap"; echo .tardigrade-ci)
+include $(shell test -f .tardigrade-ci || curl -sSL -o .tardigrade-ci "https://raw.githubusercontent.com/MetroStar/tardigrade-ci/master/bootstrap/Makefile.bootstrap"; echo .tardigrade-ci)
 ```
 
 ### Via Docker
@@ -60,7 +60,7 @@ Refer to [Prerequisite](#Prerequisite) section for Makefile setup.
 **NOTE:** The target project _must_ be added as a bindmount to the docker WORKDIR.
 
 ```bash
-IMAGE="plus3it/tardigrade-ci:latest"
+IMAGE="MetroStar/tardigrade-ci:latest"
 docker pull "$IMAGE"
 docker run --rm -ti -v "$PWD/:/workdir/" -w /workdir "$IMAGE" help
 ```
@@ -68,7 +68,7 @@ docker run --rm -ti -v "$PWD/:/workdir/" -w /workdir "$IMAGE" help
 ### Makefile Include
 
 This option uses `make` to invoke the targets. It is recommended to use the target
-`make docker/run`, with a Dockerfile based on the plus3it/tardigrade-ci image,
+`make docker/run`, with a Dockerfile based on the MetroStar/tardigrade-ci image,
 as this container includes all the tools needed by all the targets. In this case,
 you need only `make` and `docker` on your system. See below for an example.
 
@@ -85,7 +85,7 @@ with the following content (updated to the current version).
     the underlying toolset.
 
     ```bash
-    FROM plus3it/tardigrade-ci:0.8.0
+    FROM MetroStar/tardigrade-ci:0.8.0
     ```
 
 2. Refer to [Prerequisite](#Prerequisite) section for Makefile setup.

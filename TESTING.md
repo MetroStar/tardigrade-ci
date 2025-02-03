@@ -16,15 +16,15 @@ Configure or run the following script to setup a test project environment:
 TESTDIR=$(mktemp --tmpdir -d tardigrade-ci.XXXXXXXXXX)
 cd $TESTDIR
 git init
-echo "FROM plus3it/tardigrade-ci:latest" > Dockerfile
+echo "FROM MetroStar/tardigrade-ci:latest" > Dockerfile
 echo "SHELL := /bin/bash" > Makefile
-echo 'include $(shell test -f .tardigrade-ci || curl -sSL -o .tardigrade-ci "https://raw.githubusercontent.com/plus3it/tardigrade-ci/master/bootstrap/Makefile.bootstrap"; echo .tardigrade-ci)' >> Makefile
+echo 'include $(shell test -f .tardigrade-ci || curl -sSL -o .tardigrade-ci "https://raw.githubusercontent.com/MetroStar/tardigrade-ci/master/bootstrap/Makefile.bootstrap"; echo .tardigrade-ci)' >> Makefile
 echo '# tardigrade-ci' > .gitignore
 echo '.tardigrade-ci' >> .gitignore
 echo 'tardigrade-ci/' >> .gitignore
 
 docker pull python:3
-docker pull plus3it/tardigrade-ci:latest
+docker pull MetroStar/tardigrade-ci:latest
 ```
 
 ### Via Docker (non-tardigrade-ci image)
@@ -62,7 +62,7 @@ Running a tardigrade-ci container will use the version of `tardigrade-ci` presen
 2. In the `"${TESTDIR:?}"` directory, run the following command:
 
 ```bash
-docker run --rm -v $PWD:/workdir --workdir=/workdir --entrypoint make plus3it/tardigrade-ci:latest help
+docker run --rm -v $PWD:/workdir --workdir=/workdir --entrypoint make MetroStar/tardigrade-ci:latest help
 ```
 
 3. This should result in only the `.tardigrade-ci` file being created.
@@ -70,7 +70,7 @@ docker run --rm -v $PWD:/workdir --workdir=/workdir --entrypoint make plus3it/ta
 4. Run the following command to remove the `tardigrade-ci` subdirectory and bootstrap Makefile `.tardigrade-ci`:
 
 ```bash
-docker run --rm -v $PWD:/workdir --workdir=/workdir --entrypoint make plus3it/tardigrade-ci:latest clean
+docker run --rm -v $PWD:/workdir --workdir=/workdir --entrypoint make MetroStar/tardigrade-ci:latest clean
 ```
 
 5. Go to parent directory of `"${TESTDIR:?}"` and remove the directory to delete testing environment:
@@ -112,7 +112,7 @@ When the bootstrap Makefile detects the directory `tardigrade-ci/` in a parent o
 
 ```bash
 cd "${TESTDIR:?}" && cd ..
-git clone https://github.com/plus3it/tardigrade-ci.git
+git clone https://github.com/MetroStar/tardigrade-ci.git
 ```
 
 2. Environment setup should contain `"${TESTDIR:?}"` described in the [Test Setup](#test-setup) section.
